@@ -6,6 +6,8 @@ import re
 from PIL import ImageTk, Image
 
 schedule = None
+img = None
+
 
 def set_basics(root: tk.Tk):
     root.title("IrkTrinket - automated emailed screenshots")
@@ -95,6 +97,8 @@ def pack_canvas_timer_and_button(root: tk.Tk, user_email, user_period, on_tick):
 
 def update_screenshot(root: tk.Tk, path):
     canvas = root.nametowidget('canvas_frame.preview_canvas')
+    canvas.delete("all")
+    global img
     img = ImageTk.PhotoImage(Image.open(path))
     canvas.create_image(0, 0, image=img, anchor=tk.NW)
     canvas.update()
